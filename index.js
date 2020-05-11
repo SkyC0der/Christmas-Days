@@ -1,21 +1,26 @@
-const gifts = {
-    0: 'day of Christmas my true love gave to me:',
-    1: [' first ', ' a Partridge in a Pear Tree.\n'],
-    2: [' second ', ' two Turtle Doves, and'],
-    3: [' third ', ' three French Hens,'],
-    4: [' fourth ', ' four Calling Birds,'],
-    5: [' fifth ', ' five Gold Rings,'],
-    6: [' sixth ', ' six Geese-a-Laying,'],
-    7: [' seventh ', ' seven Swans-a-Swimming,'],
-    8: [' eighth ', ' eight Maids-a-Milking,'],
-    9: [' ninth ', ' nine Ladies Dancing,'],
-    10: [' tenth ', ' ten Lords-a-Leaping,'],
-    11: [' eleventh ', ' eleven Pipers Piping,'],
-    12: [' twelfth ', ' twelve Drummers Drumming,']
-  }
-  
-  export default class TwelveDays {
-    //type code here
-  }
+const days = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth',
+		'ninth', 'tenth', 'eleventh', 'twelfth'],
+gifts = ['', 'a Partridge in a Pear Tree.\n', 'two Turtle Doves, and ', 'three French Hens, ',
+		'four Calling Birds, ', 'five Gold Rings, ', 'six Geese-a-Laying, ', 'seven Swans-a-Swimming, ',
+		'eight Maids-a-Milking, ', 'nine Ladies Dancing, ', 'ten Lords-a-Leaping, ',
+		'eleven Pipers Piping, ', 'twelve Drummers Drumming, ']
+
+class TwelveDays {
+
+	sing() {
+		return this.verse(1, 12)
+	}
+
+	verse(from, to=from) {
+		return [...Array(to+1).keys()].slice(from, to+1)
+				.map(i => this.sentence(i))
+				.join('\n')
+	}
+
+	sentence(no) {
+		return 'On the ' +days[no] +' day of Christmas my true love gave to me: '
+				+gifts.filter((_, i) => i <= no).reverse().join('')
+	}
+}
 
   module.exports = TwelveDays;
